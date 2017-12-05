@@ -50,7 +50,7 @@ namespace mesa{
             if (verbose == true)
             {
                 cout <<" = " << res;
-                //cout << endl;
+                cout << endl;
             }
             else {
                 cout << "\n" << res;
@@ -161,7 +161,7 @@ namespace mesa{
             if (verbose == true)
             {
                 cout << " = " << res;
-               cout << endl;
+                cout << endl;
             }
             else
             {

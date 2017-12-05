@@ -83,42 +83,24 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
                             break;
                         }
                     }
+                    if(flag)
+                        break;
                     operands.push(cur);
-                if(flag)
-                continue;
-            if(operands.size()!=1){
-                cout<<"Error with the expresion2 "<<input<<endl;
-                flag = true;
-                break;
-            }
-            if(flag)
-                continue;
-            op1 = operands.top();
-            if(verbose){
-                cout << " = ";
-            }
-            cout << op1<<endl;
                 }
-
             }
-
-            
-/*
             if(flag)
                 continue;
             if(operands.size()!=1){
                 cout<<"Error with the expresion2 "<<input<<endl;
                 flag = true;
-                break;
             }
             if(flag)
                 continue;
             op1 = operands.top();
             if(verbose){
-                cout << " = ";
+                cout<<input<<" = ";
             }
             cout << op1<<endl;
-*/
         }
     }
     return 0;
@@ -149,7 +131,7 @@ void argselect(int argc, char** argv)
     const char* const opt = "hv";
     while(true)
     {
-        const int select = getopt(argc,argv,opt);
+        const int  select = getopt(argc,argv,opt);
         if (-1 == select)
             break;
         switch(select)
@@ -168,3 +150,5 @@ void argselect(int argc, char** argv)
         }
     }
 }
+
+
