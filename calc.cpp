@@ -26,6 +26,8 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
     //readline.ignore(input.length(),'#');
     while (getline(cin, input) || !readline.eof())
     {
+        if(input.size() == 0)
+            continue;
         if (input[0] == '#') continue;
         if (tolower(input[0]) == 'q') { return 0; }
         if (tolower(input[0]) == 'h')
@@ -108,20 +110,36 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
 
 void printhelp()
 {
-    std::cout << "*********************************************************************************************\n"
-                 "* 1.Give the system an operator first.                                                      *\n"
-                 "* 2.Follow the operator by any number of operands needed seperated by a space.              *\n"
-                 "*                                                                                           *\n"
-                 "* Restart program with flag -v for verbose mode or -h to print help screen                  *\n"
-                 "* -v will set the system to verbose mode and display your input before the result.          *\n"
-                 "* .............................................................................             *\n"
-                 "* You can Add (+), multiply (*), and give exponent (^). example input: a b c * +           *\n"
-                 "* ..........................................................................................*\n"
-                 "* type 'quit' or just 'q' to exit the program                                               *\n"
-                 "* ..........................................................................................*\n"
-                 "* You can process a file with one postfix expresion per line.                               *\n"
-                 "*********************************************************************************************\n"
-                 "Created by Amir Torabi. \n"
+  std::cout << "'7MM""Mq.                      mm         .d``  db                   .g8""bgd          `7MM        \n";          
+  std::cout << "`MM   `MM.                   MM         dM`                      .dP'                  MM        \n";          
+  std::cout << "`MM   ,M9 ,pWWq.  ,pP""Ybd mmMMmm       mMMm`7  MM  `7M'   `MF'    dM'         ,6''Yb.   MM  ,p6bo \n";  
+  std::cout << "`MMmmdM9 6W'   `Wb 8I   `'   MM         MM    MM    `VA ,V'      MM         8)   MM    MM 6M'  OO\n";  
+  std::cout << "`MM      8M     M8 `YMMMa.   MM         MM    MM      XMX        MM.         ,pm9MM    MM 8M     \n";       
+  std::cout << "`MM      YA.   ,A9 L.   I8   MM         MM    MM    ,V' VA.      `Mb.     ,'8M   MM    MM YM.    \n"; 
+  std::cout << "JMML.    `Ybmd9'   M9mmmP'   `Mbmo    .JMML..JMML..AM.   .MA.      `'bmmmd' `Moo9^Yo..JMML.YMbmd'\n";
+  std::cout << "_________________________________________________________________________________________________\n";
+  std::cout << "  A post fix calculator: Use +,*,^ operators for every two operands. Multi-operator capability   \n\n\n";  
+          
+  std::cout << "  *********************************************************************************************\n"
+                 "                                                                                               \n"
+                 "    1.Give the system an operator AFTER giving two operands.                                   \n"
+                 "                                                                                               \n"
+                 "    2. The program will take the result of the first two operands and use the next given       \n"
+                 "       operand as the second value. Follow this with another operand.                          \n"
+                 "       example input: 12 8 + 2 * 3 ^                                                           \n"
+                 "                                                                                               \n"
+                 "    3. Use -v on execution for verbose result mode example: a b + = c                          \n"   
+                 "                                                                                               \n"
+                 "    You can Add (+), multiply (*), and give exponent (^). example input: a b c * +             \n"
+                 "                                                                                               \n"
+                 "    type 'quit' or just 'q' to exit the program                                                \n"
+                 "                                                                                               \n"
+                 "    You can process a file with one postfix expresion per line.                                \n"
+                 "                                                                                               \n"
+                 "    use -h on execution to launch help menu on startup.                                        \n"
+                 "                                                                                               \n"    
+                 "  *********************************************************************************************\n"
+                 "  Created by Amir Torabi. \n"
     << std::endl;
         //exit(1);
 }
@@ -131,7 +149,7 @@ void argselect(int argc, char** argv)
     const char* const opt = "hv";
     while(true)
     {
-        const int  select = getopt(argc,argv,opt);
+        const int select = getopt(argc,argv,opt);
         if (-1 == select)
             break;
         switch(select)
