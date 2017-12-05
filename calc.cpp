@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include <stack>
+#include <stdlib.h>
 #include "BigInt.h"
 
 using namespace std;
@@ -15,7 +16,7 @@ void argselect(int argc, char** argv);
 
 int main(int argc, char** argv)
 {
-cout << "\nType help for program use information. Type quit to exit.\n\n";
+cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\n3.Type (c)lear to clear the screen\n\n";
     argselect(argc, argv);
 
     string input;
@@ -30,6 +31,7 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
             continue;
         if (input[0] == '#') continue;
         if (tolower(input[0]) == 'q') { return 0; }
+        if (tolower(input[0]) == 'c'){cout<<string(100, '\n')<< "Enter a new expression. "<<endl<<endl; continue; } //fake clear
         if (tolower(input[0]) == 'h')
         {
             printhelp();
@@ -39,7 +41,7 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
             for (int i = 0; i <(int) input.size(); i++) {
                 if (!(input[i] == '*' || input[i] == '^' || input[i] == '+' || input[i] == ' ' || (input[i] >= '0' && input[i] <= '9')))
                 {
-                    cout << "Please give one postfix expresion with integer based operands and (+,*,^) operators.\n";
+                    cout << "Please give one postfix expresion with integer based operands and (+,*,^) operators. Type help.\n";
                     flag = true;
                     break;
                 }
@@ -71,7 +73,7 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
                     }
                     else
                     {
-                        cout<<"Error with the expresion "<<input<<endl;
+                        cout<<"Error with the expression: " <<input<<". Type help. " <<endl<<endl;
                         flag = true;
                         break;
                     }
@@ -80,7 +82,7 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
                     for(int j = 0; j < cur.size();j++)
                     {
                         if(cur[j]<'0' || cur[j] > '9'){
-                            cout<<"Error with operand "<<cur<<endl;
+                            cout<<"Error with input: " << cur<<". Type help. "<<endl<<endl;
                             flag = true;
                             break;
                         }
@@ -93,7 +95,7 @@ cout << "\nType help for program use information. Type quit to exit.\n\n";
             if(flag)
                 continue;
             if(operands.size()!=1){
-                cout<<"Error with the expresion2 "<<input<<endl;
+                cout<<"Too few operators in expression: "<<input <<". Type help. " <<endl<<endl;
                 flag = true;
             }
             if(flag)
