@@ -5,7 +5,8 @@
 #include <stdlib.h>
 #include "BigInt.h"
 
-using namespace std;
+using std::cout;
+using std::cin;
 using namespace mesa;
 bool verbose = false;
 
@@ -16,7 +17,7 @@ void argselect(int argc, char** argv);
 
 int main(int argc, char** argv)
 {
-cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\n3.Type (c)lear to clear the screen\n\n";
+cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\n3.Type (c)lear to clear the screen\n\ncalc:\n";
     argselect(argc, argv);
 
     string input;
@@ -31,7 +32,7 @@ cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\
             continue;
         if (input[0] == '#') continue;
         if (tolower(input[0]) == 'q') { return 0; }
-        if (tolower(input[0]) == 'c'){cout<<string(100, '\n')<< "Enter a new expression. "<<endl<<endl; continue; } //fake clear
+        if (tolower(input[0]) == 'c'){cout<<string(100, '\n')<<"\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\n3.Type (c)lear to clear the screen\n\ncalc:"<<endl; continue; } //fake clear
         if (tolower(input[0]) == 'h')
         {
             printhelp();
@@ -73,7 +74,7 @@ cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\
                     }
                     else
                     {
-                        cout<<"Error with the expression: " <<input<<". Type help. " <<endl<<endl;
+                        cout<<"Error with the expression: \" " <<input<<" \". Type help. " <<endl<<endl;
                         flag = true;
                         break;
                     }
@@ -82,7 +83,7 @@ cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\
                     for(int j = 0; j < cur.size();j++)
                     {
                         if(cur[j]<'0' || cur[j] > '9'){
-                            cout<<"Error with input: " << cur<<". Type help. "<<endl<<endl;
+                            cout<<"Error with input: \" " << cur<<" \". Type help. "<<endl<<endl;
                             flag = true;
                             break;
                         }
@@ -95,7 +96,7 @@ cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\
             if(flag)
                 continue;
             if(operands.size()!=1){
-                cout<<"Too few operators in expression: "<<input <<". Type help. " <<endl<<endl;
+                cout<<"Too few operators in expression: \" "<<input <<" \". Type help. " <<endl<<endl;
                 flag = true;
             }
             if(flag)
@@ -112,17 +113,17 @@ cout << "\n\n1.Type (h)elp for program use information.\n2.Type (q)uit to exit.\
 
 void printhelp()
 {
-  std::cout << "'7MM""Mq.                      mm         .d``  db                   .g8""bgd          `7MM        \n";          
-  std::cout << "`MM   `MM.                   MM         dM`                      .dP'                  MM        \n";          
-  std::cout << "`MM   ,M9 ,pWWq.  ,pP""Ybd mmMMmm       mMMm`7  MM  `7M'   `MF'    dM'         ,6''Yb.   MM  ,p6bo \n";  
-  std::cout << "`MMmmdM9 6W'   `Wb 8I   `'   MM         MM    MM    `VA ,V'      MM         8)   MM    MM 6M'  OO\n";  
-  std::cout << "`MM      8M     M8 `YMMMa.   MM         MM    MM      XMX        MM.         ,pm9MM    MM 8M     \n";       
-  std::cout << "`MM      YA.   ,A9 L.   I8   MM         MM    MM    ,V' VA.      `Mb.     ,'8M   MM    MM YM.    \n"; 
-  std::cout << "JMML.    `Ybmd9'   M9mmmP'   `Mbmo    .JMML..JMML..AM.   .MA.      `'bmmmd' `Moo9^Yo..JMML.YMbmd'\n";
-  std::cout << "_________________________________________________________________________________________________\n";
-  std::cout << "  A post fix calculator: Use +,*,^ operators for every two operands. Multi-operator capability   \n\n\n";  
+  cout << "'7MM""Mq.                      mm         .d``  db                   .g8""bgd          `7MM        \n";          
+  cout << "`MM   `MM.                   MM         dM`                      .dP'                  MM        \n";          
+  cout << "`MM   ,M9 ,pWWq.  ,pP""Ybd mmMMmm       mMMm`7  MM  `7M'   `MF'    dM'         ,6''Yb.   MM  ,p6bo \n";  
+  cout << "`MMmmdM9 6W'   `Wb 8I   `'   MM         MM    MM    `VA ,V'      MM         8)   MM    MM 6M'  OO\n";  
+  cout << "`MM      8M     M8 `YMMMa.   MM         MM    MM      XMX        MM.         ,pm9MM    MM 8M     \n";       
+  cout << "`MM      YA.   ,A9 L.   I8   MM         MM    MM    ,V' VA.      `Mb.     ,'8M   MM    MM YM.    \n"; 
+  cout << "JMML.    `Ybmd9'   M9mmmP'   `Mbmo    .JMML..JMML..AM.   .MA.      `'bmmmd' `Moo9^Yo..JMML.YMbmd'\n";
+  cout << "__________________________________________________________________________________________________\n";
+  cout << "    A post fix calculator | Multi-operator capability | HUGE integer capability (no overflow)   \n\n\n";  
           
-  std::cout << "  *********************************************************************************************\n"
+  cout << "  *********************************************************************************************\n"
                  "                                                                                               \n"
                  "    1.Give the system an operator AFTER giving two operands.                                   \n"
                  "                                                                                               \n"
@@ -136,13 +137,14 @@ void printhelp()
                  "                                                                                               \n"
                  "    type 'quit' or just 'q' to exit the program                                                \n"
                  "                                                                                               \n"
-                 "    You can process a file with one postfix expresion per line.                                \n"
+                 "    You can process a file with one postfix expression(multi operator functional) per line.    \n"
                  "                                                                                               \n"
                  "    use -h on execution to launch help menu on startup.                                        \n"
                  "                                                                                               \n"    
                  "  *********************************************************************************************\n"
                  "  Created by Amir Torabi. \n"
-    << std::endl;
+    <<endl;
+    cout << "calc:" << endl;
         //exit(1);
 }
 
@@ -158,14 +160,14 @@ void argselect(int argc, char** argv)
         {
         case 'v':
             verbose = true;
-            std::cout << "verbose mode On" << std::endl;
+            cout << " (verbose mode On)" << endl;
             break;
         case 'h':
             printhelp();
             break;
         case '?':
             default:
-            std::cout <<  "Unknown command" << std::endl;
+            cout <<  "Unknown command" << endl;
             break;
         }
     }
